@@ -4,45 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercice1
+public class Exercise13
 {
-    internal class Program
+    static int position = 0;
+    public static void Main()
     {
-        static void Main(string[] args)
-        {
-            int nb = 0;
-            do
-            {
-                Console.WriteLine("entrez un nombre");
+        int[] tab = new int[10];
+        int i, n,en;
+        Console.Write("\n\nInsert New value in the sorted array :\n");
+        Console.Write("-----------------------------------------\n");
 
-            } while (!int.TryParse(Console.ReadLine(), out nb));
-
-            if (premier(nb))
-            {
-                Console.WriteLine("votre nombre est premier");
-            }
-            else
-            {
-                Console.WriteLine("votre nombre pas premier");
-            }
-        }
-        public static bool premier(int a)
+        Console.Write("enter la longueur de tableau : ");
+        n = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Input {0} elements in the array in ascending order:\n", n);
+        for (i = 0; i < n; i++)
         {
-            if (a < 2)
-            {
-                return true;
-            }
-            else
-            {
-                for (int i = 2; i < a; i++)
-                {
-                    if (a % i == 0)
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
+            Console.Write("element - {0} : ", i);
+            tab[i] = Convert.ToInt32(Console.ReadLine());
         }
+        Console.Write("Input the value to be inserted : ");
+        en = Convert.ToInt32(Console.ReadLine());
+        Console.Write("The exist array list is :\n ");
+        for (i = 0; i < n; i++)
+            Console.Write("{0} ", tab[i]);
+        for (i = 0; i < n; i++)
+            if (en < tab[i])
+            {
+                position = i;
+                break;
+            }
+        for (i = n; i >= position; i--)
+            tab[i] = tab[i - 1];
+        tab[position] = en;
+
+        Console.Write("\nAfter Insert the list is :\n ");
+        for (i = 0; i <= n; i++)
+            Console.Write("{0} ", tab[i]);
+        Console.Write("\n");
     }
 }
